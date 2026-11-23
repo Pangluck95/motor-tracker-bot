@@ -40,12 +40,12 @@
 ### Fase 3: Pengelolaan Kode dengan Git & GitHub
 - [x] **3.1. Inisialisasi Git:** Menyiapkan git repository di folder `d:\Belajar\HomeLab` branch `main`.
 - [x] **3.2. Keamanan Kredensial (.gitignore & .env):** Memverifikasi bahwa `.env` dan database tidak terlacak oleh Git.
-- [/] **3.3. Remote Repository:** Membuat repo baru di GitHub dan melakukan `git push` pertama. *(Langkah Saat Ini)*
+- [x] **3.3. Remote Repository:** Membuat repo baru di GitHub (`Pangluck95/motor-tracker-bot`) dan berhasil melakukan `git push` pertama.
 
 ---
 
 ### Fase 4: Otomasi CI/CD dengan GitHub Actions
-- [ ] **4.1. Pemahaman Pipeline CI/CD:** Memahami arsitektur workflow GitHub Actions (.yml).
+- [/] **4.1. Pemahaman Pipeline CI/CD:** Memahami arsitektur workflow GitHub Actions (.yml). *(Langkah Saat Ini)*
 - [ ] **4.2. Setup GitHub Secrets:** Menyimpan kredensial SSH STB (Host, User, SSH Key) di menu Secrets GitHub secara aman.
 - [ ] **4.3. Menulis Workflow (.github/workflows/deploy.yml):**
   - **CI:** Syntax check / validasi kode otomatis di cloud GitHub.
