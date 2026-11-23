@@ -38,9 +38,9 @@
 ---
 
 ### Fase 3: Pengelolaan Kode dengan Git & GitHub
-- [ ] **3.1. Inisialisasi Git:** Menyiapkan git repository di folder `d:\Belajar\HomeLab`.
-- [ ] **3.2. Keamanan Kredensial (.gitignore & .env):** Memastikan Token Telegram tidak bocor ke publik.
-- [ ] **3.3. Remote Repository:** Membuat repo baru di GitHub dan melakukan `git push` pertama.
+- [x] **3.1. Inisialisasi Git:** Menyiapkan git repository di folder `d:\Belajar\HomeLab` branch `main`.
+- [x] **3.2. Keamanan Kredensial (.gitignore & .env):** Memverifikasi bahwa `.env` dan database tidak terlacak oleh Git.
+- [/] **3.3. Remote Repository:** Membuat repo baru di GitHub dan melakukan `git push` pertama. *(Langkah Saat Ini)*
 
 ---
 
