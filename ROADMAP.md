@@ -33,7 +33,7 @@
 - [x] **2.3. Manajemen Dependensi:** Menyiapkan file `requirements.txt`, `.env.example`, dan `.gitignore`.
 - [x] **2.4. Resep Kontainer (Dockerfile):** Menulis file `Dockerfile` dan membedah arti setiap baris instruksi.
 - [x] **2.5. Orkestrasi (Docker Compose):** Menulis file `docker-compose.yml` untuk mempermudah menjalankan bot di STB.
-- [/] **2.6. Tes Manual di STB:** Menjalankan bot pertama kali secara manual di STB agar memahami cara kerja sebelum diotomasi. *(Langkah Saat Ini)*
+- [x] **2.6. Tes Manual di STB:** Menjalankan bot pertama kali secara manual di STB dan berhasil merespon di Telegram!
 
 ---
 
