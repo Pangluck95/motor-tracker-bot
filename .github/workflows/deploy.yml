@@ -1,0 +1,42 @@
+name: CI/CD Deploy to STB
+
+# Memicu pipeline setiap kali ada git push ke branch 'main'
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  # ==========================================
+  # 1. TAHAP CI (Continuous Integration)
+  # Menguji validasi kode sebelum di-deploy
+  # ==========================================
+  syntax-check:
+    name: Validasi Sintaks Kode (CI)
+    runs-on: self-hosted
+    steps:
+      - name: Ambil Kode Terbaru
+        uses: actions/checkout@v4
+
+      - name: Uji Sintaks Python
+        run: |
+          echo "🔍 Memeriksa sintaks kode Python..."
+          python3 -m py_compile app/bot.py app/database.py
+          echo "✅ Semua berkas Python valid dan bebas error sintaks!"
+
+  # ==========================================
+  # 2. TAHAP CD (Continuous Deployment)
+  # Otomasi deploy ke kontainer Docker di STB
+  # ==========================================
+  deploy:
+    name: Deploy ke Kontainer Docker (CD)
+    needs: syntax-check
+    runs-on: self-hosted
+    steps:
+      - name: Eksekusi Update di STB
+        run: |
+          echo "🚀 Memulai proses deployment di STB..."
+          cd ~/motor-tracker-bot
+          git pull origin main
+          docker compose up -d --build
+          echo "🎉 Deployment selesai! Kontainer bot telah diperbarui dan aktif."

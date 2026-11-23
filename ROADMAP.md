@@ -45,11 +45,11 @@
 ---
 
 ### Fase 4: Otomasi CI/CD dengan GitHub Actions
-- [/] **4.1. Pemahaman Pipeline CI/CD:** Memahami arsitektur workflow GitHub Actions (.yml). *(Langkah Saat Ini)*
-- [ ] **4.2. Setup GitHub Secrets:** Menyimpan kredensial SSH STB (Host, User, SSH Key) di menu Secrets GitHub secara aman.
-- [ ] **4.3. Menulis Workflow (.github/workflows/deploy.yml):**
-  - **CI:** Syntax check / validasi kode otomatis di cloud GitHub.
-  - **CD:** Otomasi SSH ke STB -> `git pull` -> `docker compose up -d --build`.
+- [x] **4.1. Pemahaman Pipeline CI/CD:** Memahami arsitektur workflow GitHub Actions (.yml) & pendekatan Runner vs Cloud.
+- [/] **4.2. Setup Self-Hosted Runner:** Mendaftarkan STB ARM64 sebagai GitHub Actions Runner resmi. *(Langkah Saat Ini)*
+- [x] **4.3. Menulis Workflow (.github/workflows/deploy.yml):**
+  - **CI:** Syntax check / validasi kode Python otomatis.
+  - **CD:** Eksekusi otomatis `git pull` -> `docker compose up -d --build` di STB.
 
 ---
 
