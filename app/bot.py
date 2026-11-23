@@ -44,12 +44,29 @@ def is_authorized(user_id: int) -> bool:
 MAIN_KEYBOARD = ReplyKeyboardMarkup(
     [
         [KeyboardButton("/status"), KeyboardButton("/laporan")],
-        [KeyboardButton("/riwayat"), KeyboardButton("/help")]
+        [KeyboardButton("/riwayat"), KeyboardButton("/help")],
+        [KeyboardButton("/ping")]
     ],
     resize_keyboard=True
 )
 
 # --- Command Handlers ---
+
+async def ping_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Perintah uji coba CI/CD untuk mengecek status bot & server."""
+    if not is_authorized(update.effective_user.id):
+        return
+
+    waktu_server = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    pesan = (
+        f"🏓 *PONG!*\n\n"
+        f"🚀 *Status:* Bot aktif dan berjalan normal!\n"
+        f"🏠 *Environment:* Homelab STB (Armbian ARM64)\n"
+        f"⚡ *Deployment:* Otomatis via GitHub Actions CI/CD\n"
+        f"🕒 *Waktu Server:* `{waktu_server}`\n\n"
+        f"Pembaruan kode dari laptop berhasil ter-deploy tanpa sentuh terminal STB! ✨"
+    )
+    await update.message.reply_text(pesan, parse_mode="Markdown")
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
@@ -59,7 +76,8 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     pesan = (
         f"👋 Halo, *{user.first_name}*!\n\n"
-        f"Selamat datang di *Bot Catatan Perawatan & Operasional Motor* 🛵💨\n\n"
+        f"Selamat datang di *Bot Catatan Perawatan & Operasional Motor* 🛵💨\n"
+        f"⚡ _(Versi CI/CD Aktif - Homelab STB)_\n\n"
         f"Bot ini siap membantu mencatat servis, ganti sparepart, isi bensin, "
         f"dan memantau sisa kilometer sebelum ganti oli berikutnya.\n\n"
         f"💡 *Perintah Cepat yang Bisa Digunakan:*\n"
@@ -69,6 +87,7 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"• `/servis <km> <biaya> <rincian>` - Catat servis baru\n"
         f"• `/riwayat` - 5 servis terakhir\n"
         f"• `/laporan` - Total pengeluaran bulan ini\n"
+        f"• `/ping` - Cek status bot & pembuktian CI/CD\n"
         f"• `/help` - Panduan lengkap format perintah\n\n"
         f"🆔 *Telegram User ID Anda:* `{user.id}`\n"
         f"_(Simpan ID ini di file `.env` sebagai `ALLOWED_USER_ID` agar bot aman dari orang lain)_"
@@ -91,9 +110,10 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "3️⃣ *Catat Servis / Ganti Part:*\n"
         "   Format: `/servis <km> <biaya_total> <rincian_part>`\n"
         "   Contoh: `/servis 25000 145000 Ganti Oli MPX2, Busi, Kampas Rem`\n\n"
-        "4️⃣ *Pengaturan Motor:*\n"
+        "4️⃣ *Pengaturan & Utilitas:*\n"
         "   • `/setnama <nama>` - Ubah nama motor (cth: `/setnama Vario 160`)\n"
-        "   • `/setoli <km>` - Ubah interval ganti oli (cth: `/setoli 2500`)"
+        "   • `/setoli <km>` - Ubah interval ganti oli (cth: `/setoli 2500`)\n"
+        "   • `/ping` - Uji respon bot & info server CI/CD"
     )
     await update.message.reply_text(pesan, parse_mode="Markdown")
 
@@ -299,6 +319,7 @@ def main():
     # Mendaftarkan Handler Perintah
     app.add_handler(CommandHandler("start", start_command))
     app.add_handler(CommandHandler("help", help_command))
+    app.add_handler(CommandHandler("ping", ping_command))
     app.add_handler(CommandHandler("status", status_command))
     app.add_handler(CommandHandler("km", km_command))
     app.add_handler(CommandHandler("bensin", bensin_command))
