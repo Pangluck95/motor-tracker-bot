@@ -3,17 +3,21 @@ import sqlite3
 from datetime import datetime
 from typing import Optional, Dict, Any, List
 
-# Lokasi file database default (bisa diarahkan via env var DATABASE_PATH)
-DB_PATH = os.getenv("DATABASE_PATH", "data/motor.db")
+# Lokasi file database default (dinamis membaca env var DATABASE_PATH)
+def get_db_path() -> str:
+    return os.getenv("DATABASE_PATH", "data/motor.db")
 
-def get_connection(db_path: str = DB_PATH) -> sqlite3.Connection:
+def get_connection(db_path: Optional[str] = None) -> sqlite3.Connection:
     """Membuka koneksi ke database SQLite dan memastikan direktori ada."""
-    os.makedirs(os.path.dirname(db_path), exist_ok=True)
-    conn = sqlite3.connect(db_path)
+    target_path = db_path or get_db_path()
+    dir_name = os.path.dirname(target_path)
+    if dir_name:
+        os.makedirs(dir_name, exist_ok=True)
+    conn = sqlite3.connect(target_path)
     conn.row_factory = sqlite3.Row
     return conn
 
-def init_db(db_path: str = DB_PATH):
+def init_db(db_path: Optional[str] = None):
     """Inisialisasi tabel-tabel utama jika belum ada."""
     with get_connection(db_path) as conn:
         cursor = conn.cursor()

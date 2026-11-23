@@ -9,7 +9,7 @@ on:
 jobs:
   # ==========================================
   # 1. TAHAP CI (Continuous Integration)
-  # Menguji validasi kode sebelum di-deploy
+  # A. Uji Coba Cepat: Pengecekan Sintaks
   # ==========================================
   syntax-check:
     name: Validasi Sintaks Kode (CI)
@@ -25,12 +25,34 @@ jobs:
           echo "✅ Semua berkas Python valid dan bebas error sintaks!"
 
   # ==========================================
+  # 1. TAHAP CI: Pre-Deployment QA Testing
+  # B. Uji Logika Bisnis & Fitur (Pytest)
+  # ==========================================
+  qa-automated-tests:
+    name: QA Automated Testing (Pytest)
+    needs: syntax-check
+    runs-on: self-hosted
+    steps:
+      - name: Ambil Kode Terbaru
+        uses: actions/checkout@v4
+
+      - name: Siapkan Dependensi Pengujian
+        run: |
+          python3 -m pip install pytest || pip3 install pytest
+
+      - name: Jalankan Suite Pengujian QA (Pre-Deploy)
+        run: |
+          echo "🧪 Menjalankan pengujian otomatis QA (Pre-Deploy)..."
+          python3 -m pytest -v tests/
+          echo "🎉 Semua skenario uji QA berhasil lolos!"
+
+  # ==========================================
   # 2. TAHAP CD (Continuous Deployment)
-  # Otomasi deploy ke kontainer Docker di STB
+  # Hanya jalan jika SEMUA uji coba QA lolos!
   # ==========================================
   deploy:
     name: Deploy ke Kontainer Docker (CD)
-    needs: syntax-check
+    needs: qa-automated-tests
     runs-on: self-hosted
     steps:
       - name: Eksekusi Update di STB
