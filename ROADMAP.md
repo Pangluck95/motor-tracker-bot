@@ -46,7 +46,7 @@
 
 ### Fase 4: Otomasi CI/CD dengan GitHub Actions
 - [x] **4.1. Pemahaman Pipeline CI/CD:** Memahami arsitektur workflow GitHub Actions (.yml) & pendekatan Runner vs Cloud.
-- [/] **4.2. Setup Self-Hosted Runner:** Mendaftarkan STB ARM64 sebagai GitHub Actions Runner resmi. *(Langkah Saat Ini)*
+- [x] **4.2. Setup Self-Hosted Runner:** Mendaftarkan STB ARM64 sebagai GitHub Actions Runner resmi (status Active/Idle via systemd service).
 - [x] **4.3. Menulis Workflow (.github/workflows/deploy.yml):**
   - **CI:** Syntax check / validasi kode Python otomatis.
   - **CD:** Eksekusi otomatis `git pull` -> `docker compose up -d --build` di STB.
@@ -54,7 +54,7 @@
 ---
 
 ### Fase 5: Uji Coba Puncak & Pembuktian CI/CD
-- [ ] **5.1. Live Update Test:** Mengubah pesan respon bot di laptop (misal: menambahkan perintah `/menu` baru).
+- [/] **5.1. Live Update Test:** Mengubah pesan respon bot di laptop (misal: menambahkan perintah atau mempercantik pesan sambutan). *(Langkah Selanjutnya)*
 - [ ] **5.2. Eksekusi Push:** Menjalankan `git commit` dan `git push` dari laptop.
 - [ ] **5.3. Observasi CI/CD:** Memantau proses deploy yang berjalan otomatis di tab GitHub Actions.
 - [ ] **5.4. Verifikasi Akhir:** Menguji bot di Telegram HP dan melihat perubahan yang terjadi tanpa menyentuh terminal STB sama sekali!
