@@ -1,0 +1,14 @@
+services:
+  motor-bot:
+    build: .
+    container_name: motor-tracker-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      # PERSISTENSI DATA:
+      # Folder ./data di server host di-mount ke /app/data di dalam kontainer.
+      # Database SQLite (motor.db) akan aman dan tidak terhapus saat kontainer di-update/rebuild!
+      - ./data:/app/data
+    environment:
+      - DATABASE_PATH=/app/data/motor.db
