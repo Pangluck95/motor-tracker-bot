@@ -55,6 +55,6 @@
 
 ### Fase 5: Uji Coba Puncak & Pembuktian CI/CD
 - [x] **5.1. Live Update Test:** Mengubah pesan respon bot di laptop (menambahkan fitur `/ping`, info deployment, dan memperbarui sambutan `/start`).
-- [/] **5.2. Eksekusi Push:** Menjalankan `git commit` dan `git push` dari laptop. *(Langkah Selanjutnya)*
-- [ ] **5.3. Observasi CI/CD:** Memantau proses deploy yang berjalan otomatis di tab GitHub Actions.
-- [ ] **5.4. Verifikasi Akhir:** Menguji bot di Telegram HP dan melihat perubahan yang terjadi tanpa menyentuh terminal STB sama sekali!
+- [x] **5.2. Eksekusi Push:** Menjalankan `git commit` dan `git push` dari laptop. *(Commit `1aa3cd9`)*
+- [x] **5.3. Observasi CI/CD:** Memantau proses deploy yang berjalan otomatis di tab GitHub Actions. *(Status: Success di runner STB)*
+- [x] **5.4. Verifikasi Akhir:** Menguji bot di Telegram HP dan melihat perubahan yang terjadi tanpa menyentuh terminal STB sama sekali!
